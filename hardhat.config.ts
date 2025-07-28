@@ -35,6 +35,7 @@ const chainIds = {
   rinkeby: 4,
   goerli: 5,
   bsctestnet: 97,
+  "arbitrum-sepolia": 421614,
 };
 
 // Ensure that we have all the environment variables we need.
@@ -59,6 +60,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       break;
     case "bsctestnet":
       jsonRpcUrl = "https://data-seed-prebsc-1-s1.binance.org:8545";
+      break;
+    case "arbitrum-sepolia":
+      jsonRpcUrl = "https://arbitrum-sepolia.infura.io/v3/" + infuraApiKey;
       break;
     case "mumbai":
       jsonRpcUrl = "https://polygon-mumbai.blockpi.network/v1/rpc/public";
@@ -96,6 +100,7 @@ const config: HardhatUserConfig = {
     kovan: getChainConfig("kovan"),
     ropsten: getChainConfig("ropsten"),
     bsctestnet: getChainConfig("bsctestnet"),
+    "arbitrum-sepolia": getChainConfig("arbitrum-sepolia"),
   },
   paths: {
     artifacts: "./artifacts",
